@@ -21,7 +21,7 @@ namespace Car_Listing_MAUI_Application.ViewModel
         bool _isLoading;
 
         
-        public bool _isNotLoading => _isLoading;
+        public bool _isNotLoading => !_isLoading;
 
         //properties
         /*public bool IsBusy
