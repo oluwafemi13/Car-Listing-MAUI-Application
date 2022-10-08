@@ -11,20 +11,20 @@ using System.Threading.Tasks;
 
 namespace Car_Listing_MAUI_Application.ViewModel
 {
-    public partial class CarViewModel:BaseViewModel
+    public partial class CarListViewModel:BaseViewModel
     {
         private readonly CarServices _carServices;
-        public ObservableCollection<Car>? Cars { get; private set; }
+        public ObservableCollection<Car> Cars { get; private set; } = new();
 
 
-        public CarViewModel(CarServices carServices)
+        public CarListViewModel(CarServices carServices)
         {
             Title = "Car List";
             _carServices = carServices;  
         }
 
         [RelayCommand]
-        async Task getCarList()
+        public async Task getCarList()
         {
             if(IsLoading) return;
             try
