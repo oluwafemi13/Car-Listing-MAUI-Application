@@ -1,6 +1,7 @@
-﻿using Android.OS;
+﻿//using Android.OS;
 using Car_Listing_MAUI_Application.Models;
 using Car_Listing_MAUI_Application.Services;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,9 @@ namespace Car_Listing_MAUI_Application.ViewModel
             Title = "Car List";
             _carServices = carServices;  
         }
+
+        [ObservableProperty]
+        bool isRefreshing;
 
         [RelayCommand]
         public async Task getCarList()
@@ -54,7 +58,8 @@ namespace Car_Listing_MAUI_Application.ViewModel
             }
             finally
             {
-
+                IsLoading = false;
+                isRefreshing = false;
             }
         }
     }

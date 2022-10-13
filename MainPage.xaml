@@ -7,8 +7,25 @@
              x:DataType="viewModel:CarListViewModel"
              Title="{Binding Title}">
 
-    <Grid ColumnDefinitions="*,*" RowDefinitions="">
+    <Grid ColumnDefinitions="*,*" ColumnSpacing="5" RowDefinitions="*,Auto">
+        <RefreshView Grid.ColumnSpan="2" 
+                     Command="{Binding getCarListCommand}"
+                     IsRefreshing="{Binding IsRefreshing}">
+            <CollectionView  ItemsSource="{Binding Cars}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Car">
+                        <Frame HeightRequest="80">
+                            <HorizontalStackLayout Padding="15" Spacing="5">
+                                <Label Text="{Binding Make}"/>
+                                <Label Text="{Binding Model}"/>
+                            </HorizontalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
        
+        <Button Text="Fetch Cars" Command="{Binding getCarListCommand}" IsEnabled="{Binding _isNotLoading}" Grid.Row="1" Grid.Column="2"></Button>
     </Grid>
     
 
